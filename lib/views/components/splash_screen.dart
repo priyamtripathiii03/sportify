@@ -37,7 +37,7 @@ class SplashScreen extends StatelessWidget {
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: NetworkImage(
-                    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fillustrations%2Fmusic-app-icon-music-app-7477530%2F&psig=AOvVaw0vH1JA99t7hzrkb5CGyh4-&ust=1743150514732000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIjJkN_rqYwDFQAAAAAdAAAAABAK'),
+                    'https://cdn.dribbble.com/userupload/20816828/file/original-c0b549d16097da98bcab372c19a2b899.png?resize=752x&vertical=center'),
               ),
             ),
           ),

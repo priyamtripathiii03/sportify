@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
                   color: Colors.black,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/img/header.jpg'),
+                    image: AssetImage('assets/header.jpg'),
                   ),
                 ),
                 child: Container(),

@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: height * 0.03),
                   FutureBuilder(
-                    future: providerFalse.fetchApiData("Arijit"),
+                    future: providerFalse.fetchApiData("Pritam"),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
@@ -151,8 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
-                          text: 'Punjabi Hits',
-                          result: providerTrue.punjabiSongs!.data.result,
+                          text: 'Hindi Hits',
+                          result: providerTrue.hindiSongs!.data.result,
                         );
                       } else if (snapshot.hasError) {
                         return Center(
@@ -169,8 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
-                          text: 'Hindi Hits',
-                          result: providerTrue.hindiSongs!.data.result,
+                          text: 'Punjabi Hits',
+                          result: providerTrue.punjabiSongs!.data.result,
                         );
                       } else if (snapshot.hasError) {
                         return Center(
@@ -229,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> getObject() async {
     var provider = Provider.of<MusicProvider>(context, listen: false);
-    provider.artistData = await provider.fetchApiData("Arijit");
+    provider.artistData = await provider.fetchApiData("Pritam");
     provider.topData = await provider.fetchTopApiData();
     provider.punjabiSongs = await provider.fetchPunjabiApiData();
     provider.hindiSongs = await provider.fetchPunjabiApiData();

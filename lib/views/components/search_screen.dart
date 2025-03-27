@@ -156,6 +156,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Future<void> getObject() async {
     var provider = Provider.of<MusicProvider>(context, listen: false);
-    provider.searchList = await provider.fetchSearchApiData("Jass");
+    provider.searchList = await provider.fetchSearchApiData("Pritam");
   }
 }
