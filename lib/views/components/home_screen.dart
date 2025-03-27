@@ -9,7 +9,6 @@ import 'custom_button_navigation_bar.dart';
 import 'custom_row.dart';
 import 'drawer.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -19,19 +18,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getObject();
-  }
-
-  // GlobalKey to manage the drawer
-  @override
   Widget build(BuildContext context) {
-    // instance of the provider
-    final providerTrue = Provider.of<MusicProvider>(context);
-    final providerFalse = Provider.of<MusicProvider>(context, listen: false);
+    final provider = Provider.of<MusicProvider>(context, listen: false);
     var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       drawer: const MyDrawer(),
       body: Stack(
@@ -50,17 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
+                  SizedBox(height: height * 0.05),
                   Builder(builder: (context) {
                     return GestureDetector(
                       onTap: () {
-                        // opening drawer
                         Scaffold.of(context).openDrawer();
                       },
-                      child:
-                      const Icon(Icons.menu, size: 30, color: Colors.white),
+                      child: const Icon(Icons.menu, size: 30, color: Colors.white),
                     );
                   }),
                   SizedBox(height: height * 0.02),
@@ -84,15 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const SearchScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => const SearchScreen()),
                       );
                     },
                     child: Container(
                       height: height * 0.065,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
@@ -106,13 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.search,
-                            color: green,
-                          ),
-                          SizedBox(
-                            width: height * 0.01,
-                          ),
+                          Icon(Icons.search, color: green),
+                          SizedBox(width: height * 0.01),
                           Text(
                             'Songs, albums or artists',
                             style: TextStyle(
@@ -124,21 +102,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: height * 0.03),
+
+                  /// Trending Now
                   FutureBuilder(
-                    future: providerFalse.fetchApiData("Pritam"),
+                    future: provider.fetchApiData("Pritam"),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
                           text: 'Trending Now',
-                          result: providerTrue.artistData!.data.result,
+                          result: snapshot.data?.data.result ?? [],
                         );
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(
-                            snapshot.error.toString(),
-                          ),
-                        );
+                        return Center(child: Text(snapshot.error.toString()));
                       } else {
                         return const ShimmerEffect();
                       }
@@ -146,60 +123,82 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
 
                   SizedBox(height: height * 0.03),
+
+                  /// Hindi Hits
                   FutureBuilder(
-                    future: providerFalse.fetchPunjabiApiData(),
+                    future: provider.fetchHindi(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
                           text: 'Hindi Hits',
-                          result: providerTrue.hindiSongs!.data.result,
+                          result: snapshot.data?.data.result ?? [],
                         );
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return Center(child: Text(snapshot.error.toString()));
                       } else {
                         return const ShimmerEffect();
                       }
                     },
                   ),
+
                   SizedBox(height: height * 0.03),
+
+                  /// Punjabi Hits
                   FutureBuilder(
-                    future: providerFalse.fetchHindi(),
+                    future: provider.fetchPunjabiApiData(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
                           text: 'Punjabi Hits',
-                          result: providerTrue.punjabiSongs!.data.result,
+                          result: snapshot.data?.data.result ?? [],
                         );
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return Center(child: Text(snapshot.error.toString()));
                       } else {
                         return const ShimmerEffect();
                       }
                     },
                   ),
+
                   SizedBox(height: height * 0.03),
 
+                  // haryanvi song
                   FutureBuilder(
-                    future: providerFalse.fetchTopApiData(),
+                    future: provider.fetchHaryanaApiData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CustomRows(
+                          text: 'Haryanvi Hits',
+                          result: snapshot.data?.data.result ?? [],
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text(snapshot.error.toString()));
+                      } else {
+                        return const ShimmerEffect();
+                      }
+                    },
+                  ),
+
+                  SizedBox(height: height * 0.03),
+
+                  /// Lofi Songs
+                  FutureBuilder(
+                    future: provider.fetchTopApiData(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CustomRows(
                           text: 'Lofi Songs',
-                          result: providerTrue.topData!.data.result,
+                          result: snapshot.data?.data.result ?? [],
                         );
                       } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return Center(child: Text(snapshot.error.toString()));
                       } else {
                         return const ShimmerEffect();
                       }
                     },
                   ),
+
+                  SizedBox(height: height * 0.03),
                 ],
               ),
             ),
@@ -208,14 +207,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(),
     );
-  }
-
-  Future<void> getObject() async {
-    var provider = Provider.of<MusicProvider>(context, listen: false);
-    provider.artistData = await provider.fetchApiData("Pritam");
-    provider.topData = await provider.fetchTopApiData();
-    provider.punjabiSongs = await provider.fetchPunjabiApiData();
-    provider.hindiSongs = await provider.fetchPunjabiApiData();
-    provider.haryanaSongs = await provider.fetchPunjabiApiData();
   }
 }
