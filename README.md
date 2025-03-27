@@ -110,3 +110,13 @@ The **Music Player App** offers everything you need for the ultimate music exper
       <img src="https://github.com/user-attachments/assets/0db2d6fa-c18d-42a1-9b5f-3159176f549b"height="35%" width="22%">
    <img src="https://github.com/user-attachments/assets/44a286a5-ccac-485c-bb7c-98aaf64c1edb"height="35%" width="22%">
     </p>
+
+
+
+
+
+https://github.com/user-attachments/assets/a03241fe-a8bb-41af-a47f-7930e53fb86c
+
+
+
+    
