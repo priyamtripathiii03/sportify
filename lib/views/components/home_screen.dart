@@ -199,6 +199,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
 
                   SizedBox(height: height * 0.03),
+
+                  // arijit singh hits
+                  FutureBuilder(
+                    future: provider.fetchApiData("arijit"),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CustomRows(
+                          text: 'Arijit Singh Songs',
+                          result: snapshot.data?.data.result ?? [],
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text(snapshot.error.toString()));
+                      } else {
+                        return const ShimmerEffect();
+                      }
+                    },
+                  ),
+
+                  SizedBox(height: height * 0.03),
                 ],
               ),
             ),
