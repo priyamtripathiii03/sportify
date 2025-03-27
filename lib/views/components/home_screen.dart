@@ -182,24 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   SizedBox(height: height * 0.03),
-                  FutureBuilder(
-                    future: providerFalse.fetchHaryanaApiData(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return CustomRows(
-                          text: 'Haryanvi Hits',
-                          result: providerTrue.haryanaSongs!.data.result,
-                        );
-                      } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
-                      } else {
-                        return const ShimmerEffect();
-                      }
-                    },
-                  ),
-                  SizedBox(height: height * 0.03),
+
                   FutureBuilder(
                     future: providerFalse.fetchTopApiData(),
                     builder: (context, snapshot) {

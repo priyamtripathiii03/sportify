@@ -179,14 +179,14 @@ class MusicScreen extends StatelessWidget {
                 height: height * 0.05,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const IconButton(
                     onPressed: null,
                     icon: Icon(Icons.shuffle),
                   ),
                   SizedBox(
-                    width: width * 0.1,
+                    width: 20,
                   ),
                   IconButton(
                     onPressed: () {
@@ -225,8 +225,9 @@ class MusicScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.1,
+                    width: 20,
                   ),
+
                   const IconButton(
                     onPressed: null,
                     icon: Icon(Icons.swap_calls),
@@ -310,16 +311,6 @@ class MusicScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    const Text(
-                      'Up Next',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
